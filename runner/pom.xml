@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.xxlabaza.test</groupId>
+        <artifactId>hz</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    
+    <groupId>com.xxlabaza.test.hz</groupId>
+    <artifactId>runner</artifactId>
+    <packaging>jar</packaging>
+    
+    <name>Hazelcast Runner</name>
+    <description>
+        Test hazelcast executor runner
+    </description>
+
+    <developers>
+        <developer>
+            <name>Artem Labazin</name>
+            <email>xxlabaza@gmail.com</email>
+        </developer>
+    </developers>
+    <inceptionYear>2017</inceptionYear>
+
+    <properties>
+        <main.class>com.xxlabaza.test.hz.runner.Main</main.class>
+        <netbeans.hint.license>private</netbeans.hint.license>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${main.class}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>3.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>
